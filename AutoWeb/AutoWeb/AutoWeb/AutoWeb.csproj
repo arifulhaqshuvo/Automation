@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8F1BB914-490D-428C-B530-5598EC058EAF}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AutoWeb</RootNamespace>
     <AssemblyName>AutoWeb</AssemblyName>
@@ -34,23 +34,23 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExCSS, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ExCSS.2.0.6\lib\net451\ExCSS.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="TechTalk.SpecFlow, Version=2.1.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecFlow.2.1.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="WebDriver, Version=2.53.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.2.53.1\lib\net40\WebDriver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=2.53.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.2.53.1\lib\net40\WebDriver.Support.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -67,24 +67,25 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Like4Like\a.cs" />
-    <Compile Include="Like4Like\CommonSteps.cs" />
-    <Compile Include="Like4Like\Helper.cs" />
-    <Compile Include="Like4Like\Like4Like.cs" />
-    <Compile Include="Like4Like\Like4Like.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Like4Like.feature</DependentUpon>
-    </Compile>
+    <Compile Include="Common.cs" />
+    <Compile Include="Like4Like\BonusPage.cs" />
+    <Compile Include="Like4Like\EnterCodePage.cs" />
+    <Compile Include="Like4Like\Like4LikeManager.cs" />
+    <Compile Include="Like4Like\LikeFacebookPage.cs" />
+    <Compile Include="Like4Like\LogedInPage.cs" />
+    <Compile Include="Like4Like\LoginFacebook.cs" />
+    <Compile Include="Like4Like\LoginPage.cs" />
+    <Compile Include="Like4Like\Page.cs" />
+    <Compile Include="Like4Like\Support\ButtonGetter.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Like4Like\Like4Like.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Like4Like.feature.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Like4Like1\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
