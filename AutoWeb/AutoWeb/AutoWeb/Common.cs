@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace AutoWeb.Like4Like
+namespace AutoWeb
 {
     internal static class Common
     {
@@ -17,7 +17,7 @@ namespace AutoWeb.Like4Like
                     action.Invoke();
                     return;
                 }
-                catch
+                catch (Exception e)
                 {
                     if (i == time - 1)
                         throw;

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AutoWeb.ImageProcess;
+using AutoWeb.Like4Like;
 
 namespace AutoWeb
 {
@@ -10,7 +10,12 @@ namespace AutoWeb
     {
         public static void Main()
         {
-            new Like4Like.Like4LikeManager().Execute();
+            //var img = new ImageProcess.GrayImageProcess((Bitmap)Image.FromFile(@"C:\Users\ASC689561\Desktop\captcha11.php"));
+            //var ls = img.Split(7);
+
+
+            Cow.Common.Unity.UnityFacade.Reinit("unity");
+            Cow.Common.Unity.UnityFacade.Resolve<Like4LikeManager>().Init().Execute();
         }
     }
 }

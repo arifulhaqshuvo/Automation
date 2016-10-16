@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cow.Common.Unity;
 using OpenQA.Selenium;
 
 namespace AutoWeb.Like4Like
@@ -16,15 +17,19 @@ namespace AutoWeb.Like4Like
 
         private void Process(Like4LikeManager mgr)
         {
-            mgr.Driver.WaitUntilDocumentIsReady();
-            mgr.Driver.Navigate().GoToUrl("http://www.like4like.org/free-facebook-likes.php");
-            mgr.Driver.WaitUntilDocumentIsReady();
+            // ToYoutubeLike(mgr);
+            ToFacebookLike(mgr);
 
-            var successElement = mgr.Driver.FindElements(By.XPath("//*[@id=\"content\"]/h2"));
-            if (successElement.Count > 0)
-                mgr.CurrentState = new LikeFacebookPage();
-            else
-                throw new Exception("Can't go to http://www.like4like.org/free-facebook-likes.php");
+        }
+
+        private static void ToYoutubeLike(Like4LikeManager mgr)
+        {
+            mgr.CurrentState = UnityFacade.Resolve<LikeYoutubePage>();// new LikeYoutubePage();
+        }
+
+        private static void ToFacebookLike(Like4LikeManager mgr)
+        {
+            mgr.CurrentState = UnityFacade.Resolve<LikeFacebookPage>();//new LikeFacebookPage();
         }
     }
 }

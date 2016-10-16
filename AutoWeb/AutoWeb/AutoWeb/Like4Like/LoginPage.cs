@@ -1,37 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using Cow.Common.Unity;
 using OpenQA.Selenium;
 
 namespace AutoWeb.Like4Like
 {
     class LoginPage : Page
     {
-        private const string Url = "http://www.like4like.org/user/login.php";
-        private const string UserNameId = "username";
-        private const string UserName = "daubung08";
-        private const string PassId = "password";
-        private const string Pass = "Tinhlagio89";
-        private const string SubmitId = "submit";
-        private const string LoginFailedId = "adcopy-outer";
-        private const string LoginSuccessId = "earned-credits";
+        public string LoginUrl { get; set; }// = "http://www.like4like.org/user/login.php";
+        public string ElementUserNameXPath { get; set; } //= "//input[@name='username']";
+        public string UserName { get; set; }// = "trang1hoa1";
+        public string ElementPasswordXPath { get; set; } //= "//input[@name='password']";
+        public string Password { get; set; }// = "Tinhlagio1989";
+        public string ElementSubmitXPath { get; set; }// = "//input[@name='submit']";
+        public string ElementCheckLoginSuccessXPath { get; set; } //= "//*[@id='earned-credits']";
+        public string ElementCheckFailedXPath { get; set; } //= "//*[@id='adcopy-outer']";
 
         public override void Execute(Like4LikeManager mgr)
         {
             var driver = mgr.Driver;
             Common.Try(() =>
             {
-                driver.Navigate().GoToUrl(Url);
-                var myField = driver.FindElement(By.Name(UserNameId));
+                driver.Navigate().GoToUrl(LoginUrl);
+                var myField = driver.FindElement(By.XPath(ElementUserNameXPath));
                 myField.SendKeys(UserName);
 
-                myField = driver.FindElement(By.Name(PassId));
-                myField.SendKeys(Pass);
+                myField = driver.FindElement(By.XPath(ElementPasswordXPath));
+                myField.SendKeys(Password);
 
-                myField = driver.FindElement(By.Name(SubmitId));
+                myField = driver.FindElement(By.XPath(ElementSubmitXPath));
                 myField.Click();
                 Thread.Sleep(3000);
 
@@ -41,12 +38,14 @@ namespace AutoWeb.Like4Like
             });
         }
 
-        private static void CheckForNavigate(Like4LikeManager mgr, IWebDriver driver)
+
+        private void CheckForNavigate(Like4LikeManager mgr, IWebDriver driver)
         {
-            if (driver.FindElements(By.Id(LoginFailedId)).Count > 0)
-                mgr.CurrentState = new EnterCodePage();
-            else if (driver.FindElements(By.Id(LoginSuccessId)).Count > 0)
-                mgr.CurrentState = new LogedInPage();
+            if (driver.FindElements(By.XPath(ElementCheckLoginSuccessXPath)).Count > 0)
+                mgr.CurrentState = UnityFacade.Resolve<LogedInPage>();
+            else
+            if (driver.FindElements(By.XPath(ElementCheckFailedXPath)).Count > 0)
+                mgr.CurrentState = UnityFacade.Resolve<EnterCodePage>();
             else
             {
                 Thread.Sleep(2000);

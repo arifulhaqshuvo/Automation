@@ -26,7 +26,8 @@ namespace AutoWeb.Like4Like.Support
                 var parser = new Parser();
                 var stylesheet = parser.Parse(cssText);
                 foreach (var r in stylesheet.StyleRules)
-                    styleDic.Add(r.Value, r);
+                    if (!styleDic.ContainsKey(r.Value))
+                        styleDic.Add(r.Value, r);
             }
             return styleDic;
         }
@@ -59,7 +60,6 @@ namespace AutoWeb.Like4Like.Support
                 {
                     // nothing
                 }
-
             }
             return this;
         }
