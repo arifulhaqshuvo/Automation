@@ -1,12 +1,7 @@
 ﻿using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-using AutoWeb.ImageProcess;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 
 namespace AutoWeb.Like4Like
 {

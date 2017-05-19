@@ -17,8 +17,8 @@ namespace AutoWeb.Like4Like
 
         private void Process(Like4LikeManager mgr)
         {
-            // ToYoutubeLike(mgr);
-            ToFacebookLike(mgr);
+            ToYoutubeLike(mgr);
+            // ToFacebookLike(mgr);
 
         }
 

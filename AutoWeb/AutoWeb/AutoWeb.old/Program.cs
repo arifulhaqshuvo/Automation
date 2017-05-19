@@ -2,7 +2,6 @@
 using System.Drawing.Imaging;
 using System.Linq;
 using AutoWeb.ImageProcess;
-using AutoWeb.Like4Like;
 
 namespace AutoWeb
 {
@@ -14,8 +13,8 @@ namespace AutoWeb
             //var ls = img.Split(7);
 
 
-            Cow.Common.Unity.UnityFacade.Reinit("unity");
-            Cow.Common.Unity.UnityFacade.Resolve<Like4LikeManager>().Init().Execute();
+           // Cow.Common.Unity.UnityFacade.Reinit("unity");
+            Cow.Common.Unity.UnityFacade.Resolve<Manager>().Init().Execute();
         }
     }
 }

@@ -70,7 +70,7 @@ namespace AutoWeb.Like4Like
                     {
                         var likes = mgr.Driver.FindElements(By.XPath(xpath));
                         likes.ToList().ForEach(x => { try { x.Click(); } catch {/* nothing */} });
-                        System.Threading.Thread.Sleep(2000);
+                        System.Threading.Thread.Sleep(5000);
                     }
 
                     try

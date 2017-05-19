@@ -33,21 +33,17 @@ namespace AutoWeb
             wait.Until(readyCondition);
         }
 
-        public static ReadOnlyCollection<IWebElement> SafeUntil(this WebDriverWait wait, Func<IWebDriver, ReadOnlyCollection<IWebElement>> condition)
-        {
-            try
-            {
-                return wait.Until(condition);
-            }
-            catch (Exception)
-            {
-                return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
-            }
-        }
-
-        public static bool IsLogedIn()
-        {
-            return false;
-        }
+        //public static ReadOnlyCollection<IWebElement> SafeUntil(this WebDriverWait wait, Func<IWebDriver, ReadOnlyCollection<IWebElement>> condition)
+        //{
+        //    try
+        //    {
+        //        return wait.Until(condition);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
+        //    }
+        //}
+         
     }
 }
